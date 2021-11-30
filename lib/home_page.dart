@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:website/web_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,35 +16,23 @@ class HomePage extends StatelessWidget {
             fontSize: 32,
           ),
         ),
-        actions: [
-          ElevatedButton(
-            child: Row(
-              children: [
-                const ImageIcon(AssetImage('assets/images/github.png')),
-                Container(
-                  margin: const EdgeInsets.only(left: 6),
-                  child: const Text('GitHub'),
-                ),
-              ],
-            ),
-            onPressed: () async {
-              await launch('https://github.com/cjstehno');
-            },
+        actions: const [
+          WebButton(
+            label: 'GitHub',
+            imagePath: 'assets/images/github.png',
+            url: 'https://github.com/cjstehno',
           ),
-          ElevatedButton(
-            child: Row(
-              children: [
-                const ImageIcon(AssetImage('assets/images/stack-overflow.png')),
-                Container(
-                  margin: const EdgeInsets.only(left: 6),
-                  child: const Text('StackOverflow'),
-                ),
-              ],
-            ),
-            onPressed: () async {
-              await launch('https://stackoverflow.com/users/135294/cjstehno');
-            },
-          )
+          WebButton(
+            label: 'StackOverflow',
+            imagePath: 'assets/images/stack-overflow.png',
+            url: 'https://stackoverflow.com/users/135294/cjstehno',
+          ),
+          WebButton(
+            label: "DM's Guild",
+            imagePath: 'assets/images/icosahedron.png',
+            url:
+                'https://www.dmsguild.com/browse.php?author=Christopher%20J.%20Stehno',
+          ),
         ],
       ),
       body: Stack(
@@ -63,13 +51,12 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.75),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.grey,
-                    )
-                  ),
+                      color: Colors.white.withOpacity(0.75),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.grey,
+                      )),
                   padding: const EdgeInsets.all(10),
                   width: 400,
                   child: Column(
