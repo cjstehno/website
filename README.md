@@ -20,3 +20,11 @@ You can run the local build artifacts using the following, executed in the `buil
 
     python3 -m http.server 8080
 
+
+## Publish Site
+
+To publish the site, you need to have the production repo checked out. Run the following (after building) to copy the artifacts to the site repository:
+
+    rsync -r build/web/* ../cjstehno.github.com/
+    
+Then push the changes in the produiction site repo to publish the changes.
