@@ -8,32 +8,34 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final bool narrow = MediaQuery.of(context).size.width < 800;
+
+    const List<Widget> buttons = [
+      WebButton(
+        label: 'GitHub',
+        imagePath: 'assets/images/github.png',
+        url: 'https://github.com/cjstehno',
+      ),
+      WebButton(
+        label: 'StackOverflow',
+        imagePath: 'assets/images/stack-overflow.png',
+        url: 'https://stackoverflow.com/users/135294/cjstehno',
+      ),
+      WebButton(
+        label: "DM's Guild",
+        imagePath: 'assets/images/icosahedron.png',
+        url:
+            'https://www.dmsguild.com/browse.php?author=Christopher%20J.%20Stehno',
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Christopher J. Stehno',
-          style: GoogleFonts.neucha(
-            fontSize: 32,
-          ),
+          style: GoogleFonts.neucha(fontSize: 32),
         ),
-        actions: const [
-          WebButton(
-            label: 'GitHub',
-            imagePath: 'assets/images/github.png',
-            url: 'https://github.com/cjstehno',
-          ),
-          WebButton(
-            label: 'StackOverflow',
-            imagePath: 'assets/images/stack-overflow.png',
-            url: 'https://stackoverflow.com/users/135294/cjstehno',
-          ),
-          WebButton(
-            label: "DM's Guild",
-            imagePath: 'assets/images/icosahedron.png',
-            url:
-                'https://www.dmsguild.com/browse.php?author=Christopher%20J.%20Stehno',
-          ),
-        ],
+        actions: !narrow ? buttons : [],
       ),
       body: Stack(
         children: [
@@ -45,6 +47,18 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
+          if (narrow)
+            Container(
+              padding: const EdgeInsets.all(4),
+              color: Colors.grey,
+              alignment: Alignment.topCenter,
+              width: double.infinity,
+              height: 40,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: buttons,
+              ),
+            ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
