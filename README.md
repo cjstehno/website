@@ -27,4 +27,4 @@ To publish the site, you need to have the production repo checked out. Run the f
 
     rsync -r build/web/* ../cjstehno.github.com/
     
-Then push the changes in the produiction site repo to publish the changes.
+Then push the changes in the production site repo to publish the changes.

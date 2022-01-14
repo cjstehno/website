@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:website/menu_drawer.dart';
 import 'package:website/web_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,6 +23,11 @@ class HomePage extends StatelessWidget {
         url: 'https://stackoverflow.com/users/135294/cjstehno',
       ),
       WebButton(
+        label: 'GooglePlay',
+        imagePath: 'assets/images/android-logo.png',
+        url: 'https://play.google.com/store/apps/dev?id=6377487208969975676',
+      ),
+      WebButton(
         label: "DM's Guild",
         imagePath: 'assets/images/icosahedron.png',
         url:
@@ -37,6 +43,7 @@ class HomePage extends StatelessWidget {
         ),
         actions: !narrow ? buttons : [],
       ),
+      drawer: narrow ? const MenuDrawer() : null,
       body: Stack(
         children: [
           SizedBox(
@@ -47,18 +54,6 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          if (narrow)
-            Container(
-              padding: const EdgeInsets.all(4),
-              color: Colors.grey,
-              alignment: Alignment.topCenter,
-              width: double.infinity,
-              height: 40,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: buttons,
-              ),
-            ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
