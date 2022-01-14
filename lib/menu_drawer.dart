@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:website/avatar.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key}) : super(key: key);
@@ -12,12 +13,9 @@ class MenuDrawer extends StatelessWidget {
           AppBar(
             title: Row(
               children: [
-                const Image(
-                  image: AssetImage('assets/images/store-dev-icon.jpg'),
-                  width: 40,
-                ),
+                const Avatar(),
                 Container(
-                  child: const Text('My Projects'),
+                  child: const Text('My Stuff'),
                   margin: const EdgeInsets.only(left: 8),
                 ),
               ],
@@ -49,6 +47,13 @@ class MenuDrawer extends StatelessWidget {
             imagePath: 'assets/images/icosahedron.png',
             url:
                 'https://www.dmsguild.com/browse.php?author=Christopher%20J.%20Stehno',
+          ),
+          const Spacer(),
+          const DrawerButton(
+            label: 'Buy me a coffee?',
+            imagePath: 'assets/images/paypal.png',
+            url:
+                'https://www.paypal.com/donate/?hosted_button_id=JA246LUCNUDHC',
           ),
         ],
       ),

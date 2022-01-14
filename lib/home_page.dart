@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:website/avatar.dart';
 import 'package:website/menu_drawer.dart';
 import 'package:website/web_button.dart';
 
@@ -9,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final bool narrow = MediaQuery.of(context).size.width < 800;
+    final bool narrow = MediaQuery.of(context).size.width < 875;
 
     const List<Widget> buttons = [
       WebButton(
@@ -37,9 +38,18 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Christopher J. Stehno',
-          style: GoogleFonts.neucha(fontSize: 32),
+        title: Row(
+          children: [
+            if (!narrow)
+              Container(
+                margin: const EdgeInsets.only(right: 10),
+                child: const Avatar(),
+              ),
+            Text(
+              'Christopher J. Stehno',
+              style: GoogleFonts.neucha(fontSize: 32),
+            )
+          ],
         ),
         actions: !narrow ? buttons : [],
       ),
@@ -97,6 +107,45 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      bottomSheet: Container(
+        width: double.infinity,
+        color: Colors.grey,
+        height: 50,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: const [
+            Text('Copyright ©️ 2022 Christopher J. Stehno'),
+            DonationButton()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DonationButton extends StatelessWidget {
+  const DonationButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(final BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(Colors.black),
+        backgroundColor: MaterialStateProperty.all(Colors.amber),
+      ),
+      child: Row(
+        children: [
+          const ImageIcon(AssetImage('assets/images/paypal.png')),
+          Container(
+            margin: const EdgeInsets.only(left: 6),
+            child: const Text('Buy me a coffee?'),
+          ),
+        ],
+      ),
+      onPressed: () async {
+        await launch(
+            'https://www.paypal.com/donate/?hosted_button_id=JA246LUCNUDHC');
+      },
     );
   }
 }
